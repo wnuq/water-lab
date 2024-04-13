@@ -1,8 +1,6 @@
 package com.whater.lab.cup.examination;
 
 import com.whater.lab.cup.dto.MicrobiologicalExaminationDto;
-import com.whater.lab.cup.examination.MicrobiologicalExamination;
-import com.whater.lab.cup.examination.MicrobiologicalExaminationRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 

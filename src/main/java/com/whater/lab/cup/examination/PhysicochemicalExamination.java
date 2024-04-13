@@ -2,13 +2,11 @@ package com.whater.lab.cup.examination;
 
 import com.whater.lab.cup.dto.PhysicochemicalExaminationDto;
 import com.whater.lab.cup.entity.Sample;
-import com.whater.lab.cup.entity.SolutionReaction;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-import static com.whater.lab.cup.entity.SolutionReaction.*;
 import static com.whater.lab.cup.examination.ExaminationStatus.*;
 import static java.time.LocalDateTime.now;
 
@@ -22,8 +20,6 @@ public class PhysicochemicalExamination {
 
     @Embedded
     private Ph ph;
-
-    private SolutionReaction solutionReaction;
 
     private String description;
 
@@ -39,17 +35,6 @@ public class PhysicochemicalExamination {
 
     public void setPh(double phValue) {
         this.ph = new Ph(phValue);
-        setSolutionReaction(phValue);
-    }
-
-    private void setSolutionReaction(double phValue) {
-        if(phValue == 7) {
-            this.solutionReaction = NEUTRAL;
-        } else if (phValue < 7) {
-            this.solutionReaction = ACIDIC;
-        } else if (phValue > 7) {
-            this.solutionReaction = ALKALINE;
-        }
     }
 
     public void finishExamination(LocalDateTime whenTake, String description) {
@@ -75,7 +60,7 @@ public class PhysicochemicalExamination {
         return new PhysicochemicalExaminationDto(
                 getId(),
                 getPh().getPhValue(),
-                getSolutionReaction(),
+                getPh().getSolutionReaction(),
                 getDescription(),
                 getStatus());
     }
