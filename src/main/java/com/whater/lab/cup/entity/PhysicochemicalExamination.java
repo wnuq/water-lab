@@ -3,6 +3,7 @@ package com.whater.lab.cup.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Data
@@ -13,7 +14,14 @@ public class PhysicochemicalExamination {
     @GeneratedValue
     private Long id;
 
-    private Long ph;
+    private double ph;
+
+    private SolutionReaction solutionReaction;
+
+    private String description;
 
     private ExaminationStatus status;
+
+    @OneToOne
+    private Sample sample;
 }
