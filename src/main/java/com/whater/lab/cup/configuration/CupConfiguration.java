@@ -1,10 +1,10 @@
 package com.whater.lab.cup.configuration;
 
-import com.whater.lab.cup.repository.MicrobiologicalExaminationRepository;
-import com.whater.lab.cup.repository.PhysicochemicalExaminationRepository;
-import com.whater.lab.cup.repository.SampleRepository;
-import com.whater.lab.cup.service.MicrobiologicalExaminationService;
-import com.whater.lab.cup.service.PhysicochemicalExaminationService;
+import com.whater.lab.cup.examination.MicrobiologicalExaminationRepository;
+import com.whater.lab.cup.examination.PhysicochemicalExaminationRepository;
+import com.whater.lab.cup.examination.MicrobiologicalExaminationService;
+import com.whater.lab.cup.examination.PhysicochemicalExaminationService;
+import com.whater.lab.cup.service.SampleService;
 import com.whater.lab.cup.service.SetOfSamplesService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +18,13 @@ public class CupConfiguration {
     }
 
     @Bean
+    public SampleService sampleService() { return new SampleService(); }
+
+    @Bean
     public PhysicochemicalExaminationService physicochemicalExaminationService(
-            PhysicochemicalExaminationRepository physicochemicalExaminationRepository) {
-        return new PhysicochemicalExaminationService(physicochemicalExaminationRepository);
+            PhysicochemicalExaminationRepository physicochemicalExaminationRepository,
+            SampleService sampleService) {
+        return new PhysicochemicalExaminationService(physicochemicalExaminationRepository, sampleService);
     }
 
     @Bean

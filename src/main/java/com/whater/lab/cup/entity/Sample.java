@@ -1,5 +1,7 @@
 package com.whater.lab.cup.entity;
 
+import com.whater.lab.cup.examination.MicrobiologicalExamination;
+import com.whater.lab.cup.examination.PhysicochemicalExamination;
 import jakarta.persistence.*;
 import lombok.Data;
 

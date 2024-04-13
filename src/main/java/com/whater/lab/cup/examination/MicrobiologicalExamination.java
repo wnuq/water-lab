@@ -1,5 +1,7 @@
-package com.whater.lab.cup.entity;
+package com.whater.lab.cup.examination;
 
+import com.whater.lab.cup.entity.Sample;
+import com.whater.lab.cup.examination.ExaminationStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,15 +10,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class PhysicochemicalExamination {
+public class MicrobiologicalExamination {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private double ph;
+    private Long baseOfTheExponentiation;
 
-    private SolutionReaction solutionReaction;
+    private Long exponentOfBacteriaNumber;
 
     private String description;
 

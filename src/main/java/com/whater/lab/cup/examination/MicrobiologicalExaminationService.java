@@ -1,15 +1,15 @@
-package com.whater.lab.cup.service;
+package com.whater.lab.cup.examination;
 
 import com.whater.lab.cup.dto.MicrobiologicalExaminationDto;
-import com.whater.lab.cup.entity.MicrobiologicalExamination;
-import com.whater.lab.cup.repository.MicrobiologicalExaminationRepository;
+import com.whater.lab.cup.examination.MicrobiologicalExamination;
+import com.whater.lab.cup.examination.MicrobiologicalExaminationRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.whater.lab.cup.entity.ExaminationStatus.*;
+import static com.whater.lab.cup.examination.ExaminationStatus.*;
 import static java.time.LocalDateTime.now;
 
 @AllArgsConstructor

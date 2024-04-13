@@ -1,6 +1,6 @@
 package com.whater.lab.cup.dto;
 
-import com.whater.lab.cup.entity.ExaminationStatus;
+import com.whater.lab.cup.examination.ExaminationStatus;
 
 public record MicrobiologicalExaminationDto(
         Long id,
