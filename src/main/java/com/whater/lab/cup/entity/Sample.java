@@ -1,5 +1,6 @@
 package com.whater.lab.cup.entity;
 
+import com.whater.lab.cup.examination.ExaminationStatus;
 import com.whater.lab.cup.examination.MicrobiologicalExamination;
 import com.whater.lab.cup.examination.PhysicochemicalExamination;
 import jakarta.persistence.*;
@@ -25,7 +26,9 @@ public class Sample {
 
     private String clientPhoneNumber;
 
-    private LocalDateTime whenTake; //todo: można dać warunek przeterminownia i nie można takiej próbki zbadać
+    private LocalDateTime whenTake;
+
+    private SampleState state;
 
     @ManyToOne
     private SetOfSamples setOfSamples;
@@ -35,4 +38,11 @@ public class Sample {
 
     @OneToOne
     private PhysicochemicalExamination physicochemicalExamination;
+
+    public void tryFinalizeSample() {
+        if (physicochemicalExamination.getStatus() == ExaminationStatus.FINISHED &&
+                microbiologicalExamination.getStatus() == ExaminationStatus.FINISHED) {
+            this.state = SampleState.FINISHED;
+        }
+    }
 }
