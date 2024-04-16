@@ -17,6 +17,8 @@ public class MicrobiologicalExaminationService {
 
     private MicrobiologicalExaminationRepository examinationRepository;
 
+    private SampleService sampleService;
+
     public List<MicrobiologicalExaminationDto> findAll() {
         List<MicrobiologicalExamination> examinationList = examinationRepository.findAll();
 
@@ -76,6 +78,8 @@ public class MicrobiologicalExaminationService {
         examination.setStatus(FINISHED);
         examination.setDescription(description);
 
+        sampleService.tryFinishSample(examination.getSample().getId());
+
         examinationRepository.save(examination);
     }
 
@@ -85,6 +89,8 @@ public class MicrobiologicalExaminationService {
 
         examination.setStatus(FAIL);
         examination.setDescription(description);
+
+        sampleService.tryFinishSample(examination.getSample().getId());
 
         examinationRepository.save(examination);
     }

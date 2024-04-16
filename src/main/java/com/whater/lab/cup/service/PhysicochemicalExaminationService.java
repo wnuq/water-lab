@@ -2,6 +2,7 @@ package com.whater.lab.cup.service;
 
 import com.whater.lab.cup.dto.PhysicochemicalExaminationDto;
 import com.whater.lab.cup.entity.PhysicochemicalExamination;
+import com.whater.lab.cup.entity.SampleStatus;
 import com.whater.lab.cup.repository.PhysicochemicalExaminationRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class PhysicochemicalExaminationService {
 
     private PhysicochemicalExaminationRepository examinationRepository;
 
+    private SampleService sampleService;
 
     public List<PhysicochemicalExaminationDto> findAll() {
         List<PhysicochemicalExamination> examinationList = examinationRepository.findAll();
@@ -88,6 +90,8 @@ public class PhysicochemicalExaminationService {
         examination.setStatus(FINISHED);
         examination.setDescription(description);
 
+        sampleService.tryFinishSample(examination.getSample().getId());
+
         examinationRepository.save(examination);
     }
 
@@ -97,6 +101,8 @@ public class PhysicochemicalExaminationService {
 
         examination.setStatus(FAIL);
         examination.setDescription(description);
+
+        sampleService.tryFinishSample(examination.getSample().getId());
 
         examinationRepository.save(examination);
     }

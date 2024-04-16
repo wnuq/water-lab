@@ -23,7 +23,9 @@ public class Sample {
 
     private String clientPhoneNumber;
 
-    private LocalDateTime whenTake; //todo: można dać warunek przeterminownia i nie można takiej próbki zbadać
+    private LocalDateTime whenTake;
+
+    private SampleStatus status;
 
     @ManyToOne
     private SetOfSamples setOfSamples;
